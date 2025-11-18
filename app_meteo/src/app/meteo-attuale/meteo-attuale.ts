@@ -11,7 +11,7 @@ import { MeteoService } from '../services/meteo-service';
   styleUrl: './meteo-attuale.css',
 })
 export class MeteoAttuale {
-  city = 'Milano';       // puoi mettere una città di default
+  city = '';       // puoi mettere una città di default
   dati: any = null;
   loading = false;
   errorMsg = '';

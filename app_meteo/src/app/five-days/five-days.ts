@@ -11,22 +11,34 @@ import { MeteoService } from '../services/meteo-service';
   styleUrl: './five-days.css',
 })
 export class FiveDays {
-  city = 'Milano';   // città di default, puoi cambiarla
-  dati: any;         // come fact: any nel PDF
+  city = '';    // città di default
+  dati: any;          // dati previsioni
+  loading = false;    // stato caricamento
+  errorMsg = '';      // messaggio errore
 
   constructor(private meteo: MeteoService) {}
 
   ngOnInit() {
-    // come nel PDF: all’avvio carico i dati
     this.caricaPrevisioni();
   }
 
   caricaPrevisioni() {
-    // 1) chiamo il service (come caricaFatto → getRandomFact)
-    this.meteo.getForecast(this.city).subscribe(risposta => {
-      // 2) quando l’Observable risponde, salvo i dati in una variabile
-      this.dati = risposta;
-      // 3) il template userà this.dati per mostrare le info
+    if (!this.city.trim()) return;
+
+    this.loading = true;
+    this.errorMsg = '';
+    this.dati = null;
+
+    this.meteo.getForecast(this.city).subscribe({
+      next: (risposta) => {
+        this.dati = risposta;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error(err);
+        this.errorMsg = 'Non sono riuscito a trovare le previsioni per questa città.';
+        this.loading = false;
+      }
     });
   }
 }
