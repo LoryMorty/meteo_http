@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environmentSecret } from '../../environment.secret';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +10,9 @@ export class MeteoService {
   getRandomFact() {
     throw new Error('Method not implemented.');
   }
-  
-  private apiKey = '1fe29b692a828699c077c6123333551d';
+
+  private apiKey = environmentSecret.openWeatherKey;
+
   private apiUrl = 'https://api.openweathermap.org/data/2.5';
 
   constructor(private http: HttpClient) {}
