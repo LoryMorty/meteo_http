@@ -1,21 +1,28 @@
-<!-- NAVBAR SUPER FIGA CON GRADIENT E GLASS -->
+<!-- NAVBAR PRINCIPALE CON GRADIENT E EFFETTO GLASS -->
 <nav class="navbar navbar-expand-lg custom-navbar shadow-sm">
   <div class="container-fluid">
 
+    <!-- Logo / Nome dell’app che porta alla home -->
     <a class="navbar-brand app-title" routerLink="/">🌤 METEO</a>
 
+    <!-- Bottone per aprire/chiudere la navbar su mobile -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    <!-- Contenitore delle voci di menu -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
 
+        <!-- Link alla pagina Meteo Attuale -->
         <li class="nav-item">
+          <!-- routerLink cambia pagina senza ricaricare il sito -->
+          <!-- routerLinkActive aggiunge la classe 'active' quando la rotta è selezionata -->
           <a class="nav-link cool-link" routerLink="/meteo_attuale" routerLinkActive="active">Meteo Now</a>
         </li>
 
+        <!-- Link alla pagina delle previsioni 5 giorni -->
         <li class="nav-item">
           <a class="nav-link cool-link" routerLink="/five_days" routerLinkActive="active">Previsioni 5 Giorni</a>
         </li>
@@ -25,7 +32,8 @@
   </div>
 </nav>
 
-<!-- CONTENITORE DELLE PAGINE -->
+<!-- CONTENITORE DOVE ANGULAR MOSTRA I COMPONENTI DELLE PAGINE -->
 <div class="container mt-4 app-container">
+  <!-- router-outlet è il punto in cui Angular carica il componente della route attiva -->
   <router-outlet></router-outlet>
 </div>

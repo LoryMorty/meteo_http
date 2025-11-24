@@ -1,42 +1,53 @@
 <div class="card">
   <div class="card-header">
-    <div>
+    <div> <!-- Titolo e sottotitolo -->
       <div class="card-title gradient-text">Meteo attuale</div>
       <div class="card-subtitle">Controlla le condizioni in tempo reale</div>
     </div>
   </div>
 
-  <div class="search-row">
+   <!-- Barra ricerca città -->
+  <div class="search-row"> 
     <input
       type="text"
       [(ngModel)]="city"
       placeholder="Inserisci una città (es. Milano)"
     />
+
+    <!-- Quando clicco parte la richiesta API -->
     <button class="btn-primary" (click)="caricaMeteo()">
       Cerca
     </button>
   </div>
 
+  <!-- Messaggi di caricamento o errore -->
   <p *ngIf="loading" class="loading-text">Caricamento in corso…</p>
   <p *ngIf="errorMsg" class="error-text">{{ errorMsg }}</p>
 
+  <!-- Mostro i dati solo quando arrivano -->
   <div *ngIf="dati">
     <div class="current-weather-main">
       <div>
+        <!-- Nome città -->
         <div class="current-city">{{ dati.name }}</div>
+        <!-- Temperatura principale -->
         <div class="current-temp">{{ dati.main.temp }} °C</div>
       </div>
 
       <div>
+        <!-- Descrizione meteo -->
         <div class="current-extra">
           {{ dati.weather[0].description }}
         </div>
+
+        <!-- Percepita -->
         <div class="current-extra">
           Percepita: {{ dati.main.feels_like }} °C
         </div>
       </div>
     </div>
 
+    <!-- Badge info aggiuntive -->
     <div>
       <span class="badge-pill">💧 Umidità: {{ dati.main.humidity }}%</span>
       <span class="badge-pill">🌬️ Vento: {{ dati.wind.speed }} m/s</span>

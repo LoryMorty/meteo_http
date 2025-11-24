@@ -1,43 +1,53 @@
 <div class="card">
   <div class="card-header">
-    <div>
+    <div> <!-- Titolo e sottotitolo -->
       <div class="card-title gradient-text">Previsioni 5 giorni</div>
       <div class="card-subtitle">Ogni 3 ore, sempre aggiornato</div>
     </div>
   </div>
 
-  <div class="search-row">
+  <div class="search-row"> <!-- Barra di ricerca: input + bottone -->
     <input
       type="text"
       [(ngModel)]="city"
       placeholder="Inserisci una città (es. Roma)"
     />
-    <button class="btn-primary" (click)="caricaPrevisioni()">
+    <button class="btn-primary" (click)="caricaPrevisioni()"> <!-- Bottone che esegue la funzione caricaPrevisioni() -->
       Cerca
     </button>
   </div>
 
+  <!-- Messaggio durante il caricamento -->
   <p *ngIf="loading" class="loading-text">Caricamento in corso…</p>
+
+  <!-- Messaggio di errore se la chiamata API fallisce -->
   <p *ngIf="errorMsg" class="error-text">{{ errorMsg }}</p>
 
+  <!-- Lista delle previsioni, mostrata solo quando arrivano i dati -->
   <div *ngIf="dati" class="forecast-list">
+
+    <!-- Ciclo su ogni previsione (3h) -->
     <div
       *ngFor="let item of dati.list"
       class="forecast-item"
     >
+    <!-- Data + ora -->
       <div class="f-time">
         {{ item.dt_txt.split(' ')[0] | date:'dd/MM' }}<br>
         {{ item.dt_txt.split(' ')[1].slice(0,5) }}
       </div>
 
+      <!-- Temperatura -->
       <div class="f-temp">
         {{ item.main.temp }}°C
       </div>
 
+      <!-- Descrizione meteo -->
       <div class="f-desc">
         {{ item.weather[0].description }}
       </div>
 
+      <!-- Icona meteo -->
       <div class="f-icon">
         <img
           [src]="'https://openweathermap.org/img/wn/' + item.weather[0].icon + '@2x.png'"

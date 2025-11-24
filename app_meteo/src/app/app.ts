@@ -5,7 +5,8 @@ import { FiveDays } from './five-days/five-days';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MeteoAttuale, FiveDays, RouterLink],
+  imports: [RouterOutlet, MeteoAttuale, FiveDays, RouterLink], // router outlet cambia automaticamente il contenuto a seconda della rotta selezionata
+                                                               //router link serve per cambiare rotta
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

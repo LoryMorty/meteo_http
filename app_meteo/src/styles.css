@@ -1,14 +1,16 @@
 /* ===========================
    FONT & RESET
+   Carico il font Poppins e imposto il box-sizing globale
    =========================== */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+  box-sizing: border-box; /* Include padding e border nel calcolo delle dimensioni */
 }
 
+/* Variabili globali di colore e testo */
 :root {
   --bg1: #0f172a;
   --bg2: #020617;
@@ -21,6 +23,7 @@
 
 /* ===========================
    BODY + SFONDO ANIMATO
+   Sfondo scuro con gradient + base per i blob animati
    =========================== */
 body {
   margin: 0;
@@ -32,7 +35,7 @@ body {
   position: relative;
 }
 
-/* Blob gradient animati sullo sfondo */
+/* Blob gradient animati sullo sfondo (effetto neon) */
 body::before,
 body::after {
   content: "";
@@ -43,22 +46,25 @@ body::after {
   filter: blur(60px);
   opacity: 0.7;
   z-index: -2;
-  animation: float 18s ease-in-out infinite alternate;
+  animation: float 18s ease-in-out infinite alternate; /* Movimento lento dei blob */
 }
 
+/* Blob azzurro in alto a sinistra */
 body::before {
   top: -80px;
   left: -120px;
   background: radial-gradient(circle, #38bdf8, #3b82f6);
 }
 
+/* Blob viola/arancione in basso a destra */
 body::after {
   bottom: -100px;
   right: -140px;
   background: radial-gradient(circle, #a855f7, #f97316);
-  animation-delay: 3s;
+  animation-delay: 3s; /* Ritardo per non muoversi in sincronia con l'altro blob */
 }
 
+/* Animazione che fa "galleggiare" i blob */
 @keyframes float {
   0% {
     transform: translate3d(0, 0, 0) scale(1);
@@ -70,6 +76,7 @@ body::after {
 
 /* ===========================
    NAVBAR (usa ancora Bootstrap)
+   Qui personalizzo colori, gradient e hover dei link
    =========================== */
 .custom-navbar {
   background: linear-gradient(100deg,
@@ -89,6 +96,7 @@ body::after {
   gap: 6px;
 }
 
+/* Stile dei link della navbar */
 .nav-link {
   color: rgba(255, 255, 255, 0.85) !important;
   font-weight: 500;
@@ -98,11 +106,13 @@ body::after {
   transition: 0.25s ease;
 }
 
+/* Hover sui link della navbar */
 .nav-link:hover {
   background: rgba(255, 255, 255, 0.18) !important;
   color: #ffffff !important;
 }
 
+/* Link attivo (rotta corrente) */
 .nav-link.active {
   background: rgba(255, 255, 255, 0.35) !important;
   color: #000000 !important;
@@ -110,11 +120,12 @@ body::after {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
 }
 
-/* contenitore principale Bootstrap */
+/* Contenitore principale con animazione di entrata */
 .app-container {
   animation: fadeIn 0.4s ease;
 }
 
+/* Animazione fade-in del contenuto */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -128,6 +139,7 @@ body::after {
 
 /* ===========================
    CARD METEO (glass effect)
+   La "card" con vetro scuro e luce interna
    =========================== */
 .card {
   background: linear-gradient(135deg,
@@ -144,6 +156,7 @@ body::after {
   color: var(--text-main);
 }
 
+/* Luce radiale nella card (in alto a destra) */
 .card::before {
   content: "";
   position: absolute;
@@ -169,6 +182,7 @@ body::after {
   letter-spacing: 0.03em;
 }
 
+/* Testo con gradient per i titoli */
 .gradient-text {
   background: linear-gradient(120deg, var(--accent1), var(--accent2), var(--accent3));
   -webkit-background-clip: text;
@@ -183,6 +197,7 @@ body::after {
 
 /* ===========================
    CAMPO RICERCA + BOTTONE
+   Input città + pulsante "Cerca"
    =========================== */
 .search-row {
   display: flex;
@@ -207,12 +222,13 @@ body::after {
   color: rgba(148, 163, 184, 0.8);
 }
 
+/* Effetto focus sull'input */
 .search-row input[type="text"]:focus {
   border-color: var(--accent1);
   box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.6);
 }
 
-/* pulsante principale */
+/* Pulsante principale (Cerca) */
 .btn-primary {
   border: none;
   border-radius: 999px;
@@ -247,6 +263,7 @@ body::after {
 
 /* ===========================
    MESSAGGI STATO
+   Testi di caricamento ed errore
    =========================== */
 .loading-text {
   font-size: 14px;
@@ -264,6 +281,7 @@ body::after {
 
 /* ===========================
    METEO ATTUALE
+   Layout e stile dei dati correnti
    =========================== */
 .current-weather-main {
   display: flex;
@@ -274,6 +292,7 @@ body::after {
   margin-bottom: 16px;
 }
 
+/* Temperatura principale con effetto neon */
 .current-temp {
   font-size: 40px;
   font-weight: 700;
@@ -292,7 +311,7 @@ body::after {
   color: #e0e7ff !important;
 }
 
-/* badge info aggiuntive */
+/* Badge con info aggiuntive (umidità, vento, pressione) */
 .badge-pill {
   display: inline-flex;
   align-items: center;
@@ -311,6 +330,7 @@ body::after {
 
 /* ===========================
    PREVISIONI 5 GIORNI
+   Lista scrollabile delle previsioni
    =========================== */
 .forecast-list {
   margin-top: 14px;
@@ -319,7 +339,7 @@ body::after {
   padding-right: 4px;
 }
 
-/* scrollbar custom */
+/* Scrollbar custom per la lista previsioni */
 .forecast-list::-webkit-scrollbar {
   width: 6px;
 }
@@ -331,6 +351,7 @@ body::after {
   border-radius: 999px;
 }
 
+/* Singola riga di previsione */
 .forecast-item {
   display: flex;
   align-items: center;
@@ -349,6 +370,7 @@ body::after {
   color: var(--text-muted);
 }
 
+/* Temperatura con evidenza visiva */
 .f-temp {
   width: 80px;
   font-size: 16px;
@@ -370,6 +392,7 @@ body::after {
 
 /* ===========================
    RESPONSIVE
+   Adattamento per schermi piccoli
    =========================== */
 @media (max-width: 768px) {
   .card {
